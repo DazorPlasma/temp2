@@ -1,6 +1,5 @@
 use crate::choice;
 use crate::converter;
-use clearscreen;
 use converter::Temperature;
 use std::io::{stdin, stdout, Write};
 
@@ -16,13 +15,13 @@ pub enum Screen {
 fn get_input() -> Option<String> {
     let mut input = String::new();
     stdin().read_line(&mut input).ok()?;
-    return Some(input.trim().to_string());
+    Some(input.trim().to_string())
 }
 
 fn get_choice() -> Option<u8> {
     let input = get_input()?;
     let input: u8 = input.trim().parse().ok()?;
-    return Some(input);
+    Some(input)
 }
 
 fn clear_screen() {
@@ -32,7 +31,7 @@ fn clear_screen() {
 
 pub fn change_screen(target_screen: Screen, current_screen: &mut Screen) {
     clear_screen();
-    *current_screen = target_screen.clone();
+    *current_screen = target_screen;
     match target_screen {
         Screen::CelsiusConvert => cel_to_fahren(current_screen),
         Screen::FahrenheitConvert => fahren_to_cel(current_screen),
@@ -63,7 +62,7 @@ pub fn cel_to_fahren(current_screen: &mut Screen) {
         let input = get_input();
         let result: f64 = match input {
             Some(val) => {
-                if val == String::from("exit") {
+                if val.to_lowercase() == EXIT_KEYWORD {
                     change_screen(Screen::Home, current_screen);
                     return;
                 }

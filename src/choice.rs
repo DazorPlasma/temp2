@@ -30,5 +30,6 @@ pub fn process_choice(choice: &Choice, current_screen: &mut Screen) -> bool {
         Choice::FahrenheitConverter => change_screen(Screen::FahrenheitConvert, current_screen),
         Choice::Nothing => return false,
     }
-    return true;
+
+    true
 }
