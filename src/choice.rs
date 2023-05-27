@@ -45,7 +45,7 @@ mod tests {
         let c = Choice::try_from(124);
         match c {
             Ok(_) => panic!("Shouldn't exist!"),
-            Err(_) => ()
+            Err(_) => (),
         }
     }
 
@@ -53,12 +53,14 @@ mod tests {
     fn choise_check2() {
         let c = Choice::try_from(1);
         match c {
-            Ok(val) => if let Choice::CelsiusConverter = val {
-                ()
-            } else {
-                panic!("Wrong option!")
-            },
-            Err(_) => panic!()
+            Ok(val) => {
+                if let Choice::CelsiusConverter = val {
+                    ()
+                } else {
+                    panic!("Wrong option!")
+                }
+            }
+            Err(_) => panic!(),
         }
     }
 
@@ -66,12 +68,14 @@ mod tests {
     fn choise_check3() {
         let c = Choice::try_from(0);
         match c {
-            Ok(val) => if let Choice::Exit = val {
-                ()
-            } else {
-                panic!("Wrong option!")
-            },
-            Err(_) => panic!()
+            Ok(val) => {
+                if let Choice::Exit = val {
+                    ()
+                } else {
+                    panic!("Wrong option!")
+                }
+            }
+            Err(_) => panic!(),
         }
     }
 }

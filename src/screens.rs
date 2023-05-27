@@ -52,7 +52,7 @@ pub fn home(current_screen: &mut Screen) {
 
         match choice {
             Ok(val) => choice::process_choice(&val, current_screen),
-            Err(_) => continue
+            Err(_) => continue,
         }
     }
 }
